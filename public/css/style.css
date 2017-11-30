@@ -1,0 +1,16 @@
+
+html {
+    background-color: #FCFCFC;
+}
+
+div.nav-wrapper a.brand-logo {
+    font-size: 2em;
+}
+
+main, footer {
+    padding-left: 200px;
+}
+
+span.help-block {
+    color: red;
+}
