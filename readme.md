@@ -1,51 +1,37 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+Проект Веб-приложение для сокращения ссылок
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+Требования: PHP 5.6+ | MySql | Composer | Веб-сервер
+Данные для входа: email - admin@ya.com  Пароль - Adminpass
 
-## About Laravel
+Инструкция для запуска:
+1 Загрузите репозиторий на свой компьютер, поместив его в директорию, на которую настроен Ваш веб-сервер как localhost
+2 Загрузите необходимые зависимости с помощью команды composer update, используя терминал
+3 Создайте файл .env (используйте .env.example) и внесите в него следующие настройки:
+- Данные для подключения к БД 
+- Создайте виртуальный хост и укажите url приложения. Точка входа находится в папке public
+- Установите ключ приложения APP_KEY=base64:M5vIVhKpO+81ph5nGGAnYlG1FW/K2bMG23OORHxS6ew=
+4 Подготовьте БД, таблицы и содержимое:
+- Сделайте это с помощью зарание подготовленных миграций: используя терминал, в директории проекта, выполните следующие команды: 
+  php artisan migrate - создает необходимые таблицы в указанной в файле .env базе данных
+  php artisan db:seed - заполняет таблицы начальными данными. ВНИМАНИЕ - в процессе заполнения в таблицу переходов добавляется 
+    10 000 записей, для большей наглядности отчетов. Если для Вас это много, то измените это значение в файле
+    database/seeds/FillRefererUrlRelationsTable.php. Для отката миграций используйте команду php artisan migrate:rollback
+- Или сделайте это, импортировав файл shorturls.sql:
+  В этом случае убедитесь, что в процессе импорта у таблиц не были потеряны первичные ключи - все поля id должны быть первичными ключами в
+  режиме auto_increament
+5 Запустите приложение
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+С чего начать?
+Приложение использует HTTP авторизацю, поэтому если зайти под одним пользователем, то выйти сразу не получится, придется использовать другой браузер.
+Для не аутентифицированных пользователей доступен маршрут /register, туда же вас перенаправит и корневой марщрут /.
+Если вы хотите сразу пройти аутентификацию, то используйте маршрут /start.
+В БД предустановлено 3 пользователя, Admin, Alex, John. Используйте их данные, чтобы войти, например:
+Email - admin@ya.com  --- для входа используется email
+Пароль - Adminpass    --- по этой логике формируются пароли и для остальных пользователей.
+После входа вы будете автоматически перенаправлены на страницу пользователя.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
-
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](http://patreon.com/taylorotwell):
-
-- **[Vehikl](http://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Styde](https://styde.net)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+Особенности:
+- Приложение настроено таким образом, чтобы отлавливать переходы по несуществующим маршрутам и направлять их на корневой маршрут /.
+- Все исключения типа PDOException отлавливаются и возвращают Http статус 500. При правильной настройке БД их не должно возникать.
+- Отключить эти особенности можно в файле app/Exceptions/Handler.php
+- Все доступные маршруты приложения вы всегда можете увидеть с помощью команды php artisan route:list 
