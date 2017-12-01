@@ -11,10 +11,15 @@ class FillRefererUrlRelationsTable extends Seeder
      */
     public function run()
     {
+        /**
+         * Количество записей, добавляемых в таблицу
+         */
+        $quantity = 10000;
+
         $today = time();
         $start = $today - 10 * 24 * 3600;
 
-        foreach (range(0,10000) as $value)
+        foreach (range(0, $quantity) as $value)
         {
             do
             {
