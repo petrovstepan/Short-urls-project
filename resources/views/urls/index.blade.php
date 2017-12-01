@@ -36,7 +36,7 @@
     <div class="row"></div>
     <div class="row">
         <div class="col s4 offset-s4">
-            <a class="btn" href="{{route('shorten_urls.create')}}">Создать ссылку</a>
+            <a class="btn light-green accent-3" href="{{route('shorten_urls.create')}}">Создать ссылку</a>
         </div>
     </div>
 

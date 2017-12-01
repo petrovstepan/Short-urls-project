@@ -37,7 +37,7 @@
                             <th>Кол-во переходов</th> <td>{{$url->follows_count}}</td>
                         </tr>
                         <tr>
-                            <th>Узнать подробнее</th> <td><a class="btn" href="{{route('shorten_urls.show', ['id' => $url->id])}}">Смотреть</a> </td>
+                            <th>Узнать подробнее</th> <td><a class="btn yellow" href="{{route('shorten_urls.show', ['id' => $url->id])}}">Смотреть</a> </td>
                         </tr>
                     @endforeach
                 @endif
@@ -46,7 +46,7 @@
     </div>
     <div class="row"></div>
     <div class="row">
-        <div class="col s4 offset-s2"><a class="btn" href="{{route('shorten_urls.create')}}">Создать ссылку</a></div>
+        <div class="col s4 offset-s2"><a class="btn light-green accent-3" href="{{route('shorten_urls.create')}}">Создать ссылку</a></div>
         <div class="col s4"><a class="btn blue" href="{{route('shorten_urls.index')}}">Смотреть ссылки</a> </div>
     </div>
 

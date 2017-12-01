@@ -29,10 +29,10 @@
     </div>
     <div class="row">
         <div class="col s4 offset-s2">
-            <a class="btn" href="{{route('shorten_urls.show', ['id' => $url->id])}}">Вернуться</a>
+            <a class="btn deep-purple lighten-2" href="{{route('shorten_urls.show', ['id' => $url->id])}}">Вернуться</a>
         </div>
 
         <div class="col s4 ">
-            <a class="btn" href="{{route('shorten_urls.index')}}">Смотреть ссылки</a>
+            <a class="btn blue" href="{{route('shorten_urls.index')}}">Смотреть ссылки</a>
         </div>
 @endsection

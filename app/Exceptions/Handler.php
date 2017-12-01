@@ -47,7 +47,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        /*if ($exception instanceof NotFoundHttpException)
+        if ($exception instanceof NotFoundHttpException)
         {
             return redirect('/');
         }
@@ -56,7 +56,7 @@ class Handler extends ExceptionHandler
         {
             $st = '500 Internal Server Error';
             return new Response("Сервер временно недоступен. $st", $st);
-        }*/
+        }
 
         return parent::render($request, $exception);
     }

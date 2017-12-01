@@ -11,7 +11,7 @@
     <body>
     <header>
         <div class="row">
-                <nav class="top-nav">
+                <nav class="top-nav grey darken-3">
                     <div class="container">
                         <div class="nav-wrapper">
                             <a class="brand-logo center">@yield('title')</a>

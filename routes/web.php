@@ -23,11 +23,9 @@ Route::get('/register', function () {
 
 Route::get('/start', function () {
     return Auth::check() ? redirect()->route('users.me') : null;
-})->middleware('auth.basic');
+})->middleware('auth.basic')->name('start');
 
 
-
-//Auth::routes();
 
 Route::get('/api/v1/shorten_urls/{hash}', 'ShortenUrlController@redirectHash')->name('url.hash');
 Route::resource('api/v1/users', 'UserController', ['only' => ['create', 'store']]);
@@ -39,7 +37,4 @@ Route::group(['prefix' => '/api/v1/users/me', 'middleware' => 'auth.basic'], fun
     Route::get('/shorten_urls/{id}/{sort}', 'ShortenUrlController@urlReport')->name('url.stats');
     Route::resource('/shorten_urls', 'ShortenUrlController', ['except' => ['edit', 'update']]);
 
-});
-
-Route::get('test', function () {
 });

@@ -71,7 +71,7 @@ class RefererUrlRelation extends Model
             ->select('referer', DB::raw('COUNT(referer_id) as num'))
             ->whereUrlId($url_id)
             ->join('referers', 'referers.id', '=', 'referer_url_relations.referer_id')
-            ->groupBy('referer_id')
+            ->groupBy('referer')
             ->limit($limit)
             ->orderBy('num', 'desc')
             ->get();

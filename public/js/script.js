@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     $('a.submit').click(function(eventObject) {
-        a = event.currentTarget;
+        a = eventObject.currentTarget;
 
         form = $(a).parents('form');
         handleForm(form);

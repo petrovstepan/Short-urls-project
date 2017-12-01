@@ -13,7 +13,7 @@
     <div class="row">
         <form action="{{route('shorten_urls.store')}}" method="POST">
             <input type="text" name="url" placeholder="http://example.com/your/parameters/here" value="" class="col s5">
-            <div class="col s4 offset-s1"><a class="btn submit">Создать ссылку</a></div>
+            <div class="col s4 offset-s1"><a class="btn submit light-green accent-3">Создать ссылку</a></div>
         </form>
     </div>
     <div class="row">
