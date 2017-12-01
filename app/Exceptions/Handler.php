@@ -52,11 +52,11 @@ class Handler extends ExceptionHandler
             return redirect('/');
         }
 
-        if ($exception instanceof \PDOException)
+        /*if ($exception instanceof \PDOException)
         {
             $st = '500 Internal Server Error';
             return new Response("Сервер временно недоступен. $st", $st);
-        }
+        }*/
 
         return parent::render($request, $exception);
     }
