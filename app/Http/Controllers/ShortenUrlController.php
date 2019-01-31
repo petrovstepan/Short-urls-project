@@ -65,7 +65,6 @@ class ShortenUrlController extends Controller
         return old('status') === null ? $view : new Response($view, old('status'));
     }
 
-
     /**
      * Метод сохраняет короткую ссылку пользователя
      * Отправляет на страницу созданной ссылки, или возвращает обратно к форме
